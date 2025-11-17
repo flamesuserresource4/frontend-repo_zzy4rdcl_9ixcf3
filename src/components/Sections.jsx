@@ -105,7 +105,7 @@ function AboutFullWidth() {
   )
 }
 
-// FULL-WIDTH EXPERIENCE with timeline
+// FULL-WIDTH EXPERIENCE with timeline (wider like About)
 function ExperienceFullWidth() {
   const items = [
     {
@@ -123,37 +123,52 @@ function ExperienceFullWidth() {
   return (
     <section id="experience" className="py-28">
       <div className="mx-auto max-w-[1400px] px-4">
-        <motion.h2 initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-4xl font-bold tracking-tight text-white">Experience</motion.h2>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-white/[0.03] to-transparent"
+        >
+          <div className="pointer-events-none absolute -top-20 -left-20 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-fuchsia-500/20 blur-3xl" />
 
-        <div className="relative mt-10">
-          {/* timeline axis */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-white/10 via-white/15 to-white/10" />
+          <div className="relative p-8 md:p-14">
+            <div className="flex items-start gap-4">
+              <Sparkles className="text-blue-400" />
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">Experience</h2>
+            </div>
 
-          <div className="space-y-10">
-            {items.map((it, idx) => (
-              <motion.div
-                key={it.title}
-                initial={{ opacity: 0, x: idx % 2 === 0 ? -24 : 24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6 }}
-                className={`relative md:w-1/2 ${idx % 2 === 0 ? 'md:pr-10 md:ml-0 md:mr-auto' : 'md:pl-10 md:ml-auto md:mr-0'}`}
-                style={{ paddingLeft: '2.5rem' }}
-              >
-                {/* node */}
-                <span className="absolute left-0 top-2 h-3 w-3 rounded-full bg-gradient-to-r from-blue-500 to-fuchsia-500 shadow-[0_0_0_4px_rgba(255,255,255,0.06)]" />
+            <div className="relative mt-10">
+              {/* timeline axis */}
+              <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-white/10 via-white/15 to-white/10" />
 
-                <GlowCard>
-                  <h3 className="font-semibold text-lg text-white">{it.title}</h3>
-                  <p className="text-sm text-zinc-400">{it.period}</p>
-                  <ul className="mt-3 list-disc list-inside text-zinc-300 space-y-1">
-                    {it.points.map(p => <li key={p}>{p}</li>)}
-                  </ul>
-                </GlowCard>
-              </motion.div>
-            ))}
+              <div className="space-y-10">
+                {items.map((it) => (
+                  <motion.div
+                    key={it.title}
+                    initial={{ opacity: 0, x: -16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6 }}
+                    className="relative w-full pl-10"
+                  >
+                    {/* node */}
+                    <span className="absolute left-3 top-2 h-3 w-3 rounded-full bg-gradient-to-r from-blue-500 to-fuchsia-500 shadow-[0_0_0_4px_rgba(255,255,255,0.06)]" />
+
+                    <GlowCard>
+                      <h3 className="font-semibold text-lg text-white">{it.title}</h3>
+                      <p className="text-sm text-zinc-400">{it.period}</p>
+                      <ul className="mt-3 list-disc list-inside text-zinc-300 space-y-1">
+                        {it.points.map(p => <li key={p}>{p}</li>)}
+                      </ul>
+                    </GlowCard>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -213,7 +228,6 @@ function Education() {
     { name: 'AJ De Almeida High School', sub: '10th (2018–2019)' },
     { name: 'GVM’s Higher Secondary', sub: '12th (2020–2021)' },
     { name: 'Don Bosco College of Engineering', sub: 'B.Tech Computer Engineering (2021–2025)' },
-    { name: 'Vellore Institute of Technology', sub: 'M.Tech Computer Engineering (Cyber Security) (2025–Present)' },
   ]
   return (
     <SectionShell id="education" title="Education">
